@@ -1,0 +1,104 @@
+import { useState } from "react";
+import { ImSpinner3 } from "react-icons/im";
+import { toast } from "react-hot-toast";
+import axios from "../lib/axios";
+
+const initialState = {
+  fullname: "",
+  email: "",
+  message: "",
+};
+
+function FeedbackForm() {
+  const [feedback, setFeedback] = useState(initialState);
+  const [isLoading, setIsLoading] = useState(false);
+
+  function handleFeedback(e) {
+    setFeedback((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  }
+
+  async function handleSubmission(e) {
+    e.preventDefault();
+
+    try {
+      setIsLoading(true);
+      const res = await axios.post("/auth/signup", feedback);
+      toast.success(res.data.message);
+      setFeedback(initialState);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  return (
+    <div>
+      <form className="w-full space-y-4" onSubmit={handleSubmission}>
+        <h1 className="text-3xl font-bold">Create your account</h1>
+        <div>
+          <label htmlFor="fullname" className="label">
+            Full name
+          </label>
+          <input
+            type="text"
+            placeholder="John Doe"
+            id="fullname"
+            name="fullname"
+            required
+            className="input"
+            value={feedback.fullname}
+            onChange={handleFeedback}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="label">
+            Email
+          </label>
+          <input
+            type="email"
+            placeholder="johndoe@gmail.com"
+            id="email"
+            name="email"
+            required
+            className="input"
+            value={feedback.email}
+            onChange={handleFeedback}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="message" className="label">
+            Password
+          </label>
+          <input
+            type="text"
+            placeholder="Write your feedback"
+            id="message"
+            name="message"
+            required
+            className="input"
+            value={feedback.password}
+            onChange={handleFeedback}
+          />
+        </div>
+
+        <button type="submit" className="btn mt-2" disabled={isLoading}>
+          {isLoading ? (
+            <ImSpinner3
+              fill="white"
+              size={24}
+              className="animate-spin mx-auto"
+            />
+          ) : (
+            "Create Account"
+          )}
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default FeedbackForm;
