@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer components {
+  .input {
+    @apply block w-full mt-1 px-4 py-2 rounded-md  border-2 border-gray-300;
+  }
+  .label {
+    @apply font-semibold text-sm capitalize;
+  }
+  .btn {
+    @apply py-3 w-full font-semibold  bg-sky-400 hover:bg-sky-300 text-black duration-300;
+  }
+}

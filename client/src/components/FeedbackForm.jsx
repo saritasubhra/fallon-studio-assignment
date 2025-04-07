@@ -24,7 +24,7 @@ function FeedbackForm() {
 
     try {
       setIsLoading(true);
-      const res = await axios.post("/auth/signup", feedback);
+      const res = await axios.post("/feedbacks", feedback);
       toast.success(res.data.message);
       setFeedback(initialState);
     } catch (error) {
@@ -34,9 +34,8 @@ function FeedbackForm() {
     }
   }
   return (
-    <div>
+    <div className="max-w-sm sm:max-w-md mx-auto p-8 rounded-md shadow-2xl ">
       <form className="w-full space-y-4" onSubmit={handleSubmission}>
-        <h1 className="text-3xl font-bold">Create your account</h1>
         <div>
           <label htmlFor="fullname" className="label">
             Full name
@@ -71,16 +70,16 @@ function FeedbackForm() {
 
         <div>
           <label htmlFor="message" className="label">
-            Password
+            Message
           </label>
-          <input
+          <textarea
             type="text"
             placeholder="Write your feedback"
             id="message"
             name="message"
             required
             className="input"
-            value={feedback.password}
+            value={feedback.message}
             onChange={handleFeedback}
           />
         </div>
@@ -93,7 +92,7 @@ function FeedbackForm() {
               className="animate-spin mx-auto"
             />
           ) : (
-            "Create Account"
+            "Submit"
           )}
         </button>
       </form>
