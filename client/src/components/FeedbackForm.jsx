@@ -36,7 +36,7 @@ function FeedbackForm() {
   return (
     <div className="max-w-sm sm:max-w-md mx-auto p-8 rounded-md shadow-2xl ">
       <form className="w-full space-y-4" onSubmit={handleSubmission}>
-        <h1 className="text-3xl font-bold">Fallon Studio Feedback Form</h1>
+        <h1 className="text-xl font-bold">Fallon Studio Feedback Form</h1>
         <div>
           <label htmlFor="fullname" className="label">
             Full name

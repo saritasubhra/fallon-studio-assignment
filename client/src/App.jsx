@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
 import FeedbackList from "./components/FeedbackList";
+import Footer from "./components/Footer";
 
 function App() {
   const [showFeedbacks, setShowFeedbacks] = useState(false);
@@ -10,6 +11,7 @@ function App() {
     <div>
       <Navbar setShowFeedbacks={setShowFeedbacks} />
       {showFeedbacks ? <FeedbackList /> : <FeedbackForm />}
+      <Footer />
       <Toaster />
     </div>
   );
