@@ -10,6 +10,6 @@
     @apply font-semibold text-sm capitalize;
   }
   .btn {
-    @apply py-3 w-full font-semibold  bg-sky-400 hover:bg-sky-300 text-black duration-300;
+    @apply py-3 w-full font-semibold rounded-md bg-cyan-400 hover:bg-cyan-300 text-black duration-300;
   }
 }

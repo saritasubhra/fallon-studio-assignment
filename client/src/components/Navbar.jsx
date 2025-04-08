@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IoIosSunny } from "react-icons/io";
 import { LuMoonStar } from "react-icons/lu";
 
-function Navbar() {
+function Navbar({ setShowFeedbacks }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   useEffect(() => {
     if (isDarkMode) {
@@ -21,7 +21,12 @@ function Navbar() {
         <button onClick={() => setIsDarkMode((prev) => !prev)}>
           {isDarkMode ? <IoIosSunny size={22} /> : <LuMoonStar size={20} />}
         </button>
-        <button>List</button>
+        <button
+          onClick={() => setShowFeedbacks((prev) => !prev)}
+          className="btn px-6"
+        >
+          Admin
+        </button>
       </div>
     </div>
   );
